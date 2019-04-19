@@ -14,6 +14,13 @@ function serviceClicked(e) {
     //get parent
     //set siblings to 0 width
     
+    
+
+    if (e.classList.contains('active')) {
+        e.classList.remove('active');
+        return;
+    }
+
     const parent = e.parentElement;
 
     for (let i=0; i<parent.children.length; i+=1) {
