@@ -8,7 +8,7 @@ var rename      = require('gulp-rename');
 var plumber     = require('gulp-plumber');
 const webpack = require('webpack-stream');
 var browserSync = require('browser-sync').create();
- 
+var ghPages = require('gulp-gh-pages');
 sass.compiler = require('node-sass');
 
 
@@ -77,4 +77,10 @@ gulp.task('build', gulp.series('scripts', 'sass', 'fonts', 'images', 'videos', '
 
 gulp.task('default', gulp.series('build', 'watch'), function(cb) {
     cb();
+});
+
+
+gulp.task('deploy', function () {
+    return gulp.src("./build/**/*")
+        .pipe(ghPages())
 });
