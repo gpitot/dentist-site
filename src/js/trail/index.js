@@ -1,4 +1,4 @@
-import throttle from 'lodash.throttle';
+//import throttle from 'lodash.throttle';
 const clone = document.querySelector('.tooth');
 const teeth = [];
 function trail(e) {
@@ -19,21 +19,25 @@ function trail(e) {
         document.body.removeChild(teeth[0]);
         teeth.splice(0, 1);
     }
+    console.log(teeth.length);
 }
 
-function debounce(fn, delay) {
-    var timer = null;
-    return function () {
-      var context = this, args = arguments;
-      clearTimeout(timer);
-      timer = setTimeout(function () {
-        fn.apply(context, args);
-      }, delay);
-    };
-  }
 
 function beginTrail() {
-    document.addEventListener('mousemove', (e)=>{throttle(trail(e), 150)})
+    /* 
+    throttled function
+
+    document.addEventListener('mousemove', 
+        throttle((e)=>{
+            console.log('throttle')
+            trail(e);
+        }, 50));
+    */
+    
+    if (window.innerWidth > 1000) {
+        document.addEventListener('mousemove', trail);
+    }
+    
 }
 
 export {beginTrail}
